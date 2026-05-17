@@ -1,0 +1,29 @@
+ER
+You only use many-to-many relations, this is not correct. Some relations are many-to-at-most-one or many-to-exactly-one.
+branchID implies that it can be used to ID a branch. This is false.
+You also add ID attributes to some other tables that do now have them.
+Look over the attributes (and PK) for courses
+For the weak entity Branches create a proper relation to show what the weak entity Branches relies on. Consult the lecture slides if you are unsure of how this is done.
+
+ER-schema
+You rarely mark PKs
+Some tables are missing attributes
+Some tables are missing. Notably the entities (which form the basis of your diagram).
+Why is ClassifiedCourses translated differently from all other many-to-many relations. Which implementation of many-to-many relations is correct
+Consequential errors from the ER-diagram
+To write your schema, use the following syntax
+TableName( _key_, otherAtrribute, ref)
+ ref -> Table2.code
+
+FD
+You seem to have misunderstood the assignment. You are not to analyze your current tables.sql. The FD analysis is a tool for creating a schema.
+
+Read through the assignment again. You are explicitly given a domain to work with, and are to find all FDs in this domain. After this you decompose the domain using BCNF and 4NF.
+
+final-schema and .sql
+You have many consequential errors from your FDs and ER-schema. Address these first as these form the basis of your database rework
+
+
+TODO
+3. Kolla dependencies (FD)
+ 

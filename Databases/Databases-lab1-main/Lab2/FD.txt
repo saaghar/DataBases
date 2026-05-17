@@ -1,0 +1,64 @@
+
+Functional dependencies 
+
+D(studentIdnr, studentName, login, branchName, programName, programAbbreviation, courseCode, courseName, credits, departmentName, departmentAbbreviation, capacity, classification, grade, position)
+
+studentIdnr -> studentName;
+studentIdnr -> login;
+login -> studentIdnr;
+studentIdnr -> programName;
+studentIdnr, courseCode -> grade;
+programName -> programAbbreviation;
+coursCode -> departmentName;
+departmentName -> departmentAbbreviation;
+departmentAbbreviation -> departmentName;
+courseCode, position -> studentIdnr;
+courseCode -> capacity;
+courseCode -> courseName;
+courseCode -> credits;
+studentIdnr, course -> position;
+studentIdnr -> branchName
+
+
+Noramlization
+
+Decomposing using: studentIdnr -> studentName, login, branchName, programName, programAbbreviation
+X = {studentIdnr}, X+ = {studentIdnr}+ = {studentName, login, branchName, programName, programAbbreviation}
+R1(X+) = R1(studentIdnr, studentName, login, branchName, programName, programAbbreviation)
+R2(studentIdnr, courseCode, courseName, credits, departmentName, departmentAbbreviation, capacity, classification, grade, position)
+
+Decomposing using: courseCode -> courseName, credits, departmentName, departmentAbbreviation, capacity
+X = {courseCode}, X+ = {courseCode}+ = {courseName, credits, departmentName, departmentAbbreviation, capacity}
+R3(X+) = R3(courseCode, courseName, credits, departmentName, departmentAbbreviation, capacity)
+R4(courseCode, studentIdnr, classification, grade, position)
+
+Decomposing using: departmentName -> departmentAbbreviation
+X = {departmentName}, X+ = {departmentName}+ = {departmentAbbreviation}
+R5(X+) = R5(departmentName, departmentAbbreviation)
+R6(departmentName, courseCode, courseName, credits, capacity)
+
+Decomposing using: programName -> programAbbreviation
+X = {programName}, X+ = {programName}+ = {programAbbreviation}
+R7(X+) = R7(programName, programAbbreviation)
+R8(programName, studentIdnr, studentName, login, branchName)
+
+Decomposing using: studentIdnr, courseCode -> grade, position
+X = {studentIdnr, courseCode}, X+ = {studentIdnr, courseCode}+ = {grade, position}
+R9(X+) = R9(studentIdnr, courseCode, grade, position)
+R10(studentIdnr, courseCode, classification)
+
+Summary of final decomposed relations:
+
+R5(departmentName, departmentAbbreviation)
+R6(departmentName, courseCode, courseName, credits, capacity)
+R7(programName, programAbbreviation)
+R8(programName, studentIdnr, studentName, login, branchName)
+R9(studentIdnr, courseCode, grade, position)
+R10(studentIdnr, courseCode, classification)
+
+Identifying MVD for 4NF: 
+
+Decomposing using: courseCode ->> classification
+X = {courseCode}, X+ {courseCode}+ = {classification}
+R11 = R11(courseCode, classification)
+R12(studentIdnr, courseCode)
